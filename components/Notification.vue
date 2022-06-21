@@ -34,7 +34,7 @@ export default Vue.extend({
     bottom: 3em;
     right: 0;
     left: 0;
-    width: 20%;
+    width: fit-content;
     margin: auto;
     z-index: 250;
     display: flex;

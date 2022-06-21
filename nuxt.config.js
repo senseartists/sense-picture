@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -46,5 +48,10 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    publicPath: 'picture'
+  },
+
+  router: {
+    base: process.env.BASE_URL || '/',
   }
 };

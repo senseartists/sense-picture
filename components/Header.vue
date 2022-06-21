@@ -51,6 +51,7 @@ const periods = [
     {label:"last day", value:"day"},
 ];
 import Vue from 'vue';
+import Web3 from 'web3';
 export default Vue.extend({
     data() {
         return {
@@ -78,7 +79,9 @@ export default Vue.extend({
     },
     methods: {
         connect() {
-            this.$emit("connect", "0x1234567890123456789012345678901234567890");
+            ethereum.request({method: "eth_requestAccounts"}).then((accounts) => {
+                this.$emit("connect", ethereum.selectedAddress);
+            });
         },
         disconnect() {
             this.$emit("disconnect");

@@ -10,14 +10,6 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-    name: "IndexPage"
-});
-</script>
-
-<script>
-import Vue from 'vue'
-
-export default Vue.extend({
     name: "IndexPage",
     data: function() {
         return {
