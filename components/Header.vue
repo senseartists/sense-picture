@@ -166,6 +166,14 @@ header > .buttons > * {
     min-width: 16em;
     margin-bottom: -0.25em;
 }
+.select:after {
+    content: '▾';
+    position: absolute;
+    right: 1em;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+}
 .select .options {
     position: absolute;
     top: 100%;

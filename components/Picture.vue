@@ -1,12 +1,13 @@
 <template>
     <div class="picture row">
         <div class="column flex-2">
-            <CellSpotify class="flex-1" :spotify="spotify" />
+            <CellDsp class="flex-1 spotify" title="Spotify" :streams="spotify" />
+            <CellCurve class="flex-1" title="$10.0" legend="last week" :points="new Array(7).fill().map((e,i)=>({x:new Date(Date.now()+(i-40)*3600000*24),y:Math.random()*50+10}))" />
             <CellImage :image="image" />
         </div>
         <div class="column flex-2">
-            <CellAppleMusic class="flex-2" :apple-music="appleMusic" />
-            <CellDeezer class="flex-2" :deezer="deezer" />
+            <CellDsp class="flex-2 apple-music" title="Apple" :streams="appleMusic" />
+            <CellDsp class="flex-2 deezer" title="Deezer" :streams="deezer" />
             <CellTop3 class="flex-3" :top3="top3" />
         </div>
         <div class="column flex-2">
@@ -60,6 +61,16 @@ export default Vue.extend({
 .cell h1 {
     font-size: 1.5em;
     margin: 0;
+}
+
+.spotify {
+    background-color: #1db954;
+}
+.deezer {
+    background-color: #5ec6f2/*#46a0fd*/;
+}
+.apple-music {
+    background: linear-gradient(to bottom, #e97272, #dd5c5c);
 }
 
 @media (orientation: portrait) {

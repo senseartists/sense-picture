@@ -2,7 +2,7 @@
     <main>
         <Header :account="account" @connect="onConnect" @disconnect="loadDisconnectedPicture()" />
         <Picture id="picture" :apple-music="appleMusic" :deezer="deezer" :spotify="spotify" :connected="account!==null&&account!==undefined" :image="image" :top3="top3" :playlists="playlists" />
-        <Footer :connected="account!==null&&account!==undefined"></Footer>
+        <Footer :connected="account!==null&&account!==undefined" @subscribeNewsletter="onSubscribeNewsletter"></Footer>
     </main>
 </template>
 
@@ -64,6 +64,9 @@ export default Vue.extend({
         onConnect(event) {
             this.loadConnectedPicture(event);
             this.$emit("notification", {text:"welcome back ✨",color:"#6d6"});
+        },
+        onSubscribeNewsletter(email) {
+            this.$emit("notification", {text:"subscribed to the newsletter 📬",color:"#6d6"});
         }
     }
 });
@@ -78,5 +81,10 @@ main {
 #picture {
     min-height: 0;
     flex: 1;
+}
+@media (orientation: portrait) {
+    main {
+        height: auto;
+    }
 }
 </style>
