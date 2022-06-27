@@ -2,7 +2,7 @@
     <div class="picture row">
         <div class="column flex-2">
             <CellDsp class="flex-1 spotify" title="Spotify" :streams="spotify" />
-            <CellCurve class="flex-1" title="$10.0" legend="last week" :points="new Array(7).fill().map((e,i)=>({x:new Date(Date.now()+(i-40)*3600000*24),y:Math.random()*50+10}))" />
+            <CellCurve class="flex-1" :title="cryptocurrency.symbol+': $'+Math.round(cryptocurrency.value*100)/100" :subtitle="cryptocurrency.name" legend="last week" :points="cryptocurrency.points" />
             <CellImage :image="image" />
         </div>
         <div class="column flex-2">
@@ -22,9 +22,24 @@
 
 <script>
 import Vue from 'vue';
+import axios from 'axios';
 
 export default Vue.extend({
     props: ["appleMusic","deezer","spotify","image","connected","top3","playlists"],
+    data() {
+        return {
+            cryptocurrency: {points:[], value:""}
+        }
+    },
+    mounted() {
+        axios.get("api/cryptocurrency")
+        .then(res => {
+            res.data.points.forEach(e => {
+                e.x = new Date(e.x*1000);
+            });
+            this.cryptocurrency = res.data;
+        });
+    }
 });
 </script>
 
