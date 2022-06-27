@@ -2,7 +2,7 @@
     <main>
         <Header :account="account" @connect="onConnect" @disconnect="loadDisconnectedPicture()" />
         <Picture id="picture" :apple-music="appleMusic" :deezer="deezer" :spotify="spotify" :connected="account!==null&&account!==undefined" :image="image" :top3="top3" :playlists="playlists" />
-        <Footer :connected="account!==null&&account!==undefined" @subscribeNewsletter="onSubscribeNewsletter"></Footer>
+        <Footer :connected="account!==null&&account!==undefined" @subscribeNewsletter="onSubscribeNewsletter" @cannotSubscribeNewsletter="onCannotSubscribeNewsletter"></Footer>
     </main>
 </template>
 
@@ -67,6 +67,9 @@ export default Vue.extend({
         },
         onSubscribeNewsletter(email) {
             this.$emit("notification", {text:"subscribed to the newsletter 📬",color:"#6d6"});
+        },
+        onCannotSubscribeNewsletter() {
+            this.$emit("notification", {text:"cannot subscribe to the newsletter 📬",color:"#d66"});
         }
     }
 });

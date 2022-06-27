@@ -53,5 +53,11 @@ export default {
 
   router: {
     base: process.env.BASE_URL || '/',
-  }
+  },
+
+  // API
+  serverMiddleware: [
+    { path: '/api', handler: '~/api.js' }
+  ]
+
 };

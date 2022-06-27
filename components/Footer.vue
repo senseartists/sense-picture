@@ -35,6 +35,7 @@
 
 <script>
 import Vue from 'vue'
+const axios = require('axios');
 export default Vue.extend({
     data(){
         return {
@@ -48,11 +49,17 @@ export default Vue.extend({
         }
     },
     methods:{
-        submitNewsletter() {
+        async submitNewsletter() {
             if (this.newsletterEmail.length > 3 && this.newsletterEmail.includes("@")) {
-                console.log(this.newsletterEmail);
-                this.$emit("subscribeNewsletter", this.newsletterEmail);
-                this.newsletterEmail = "";
+                axios.get("api/newsletter/subscribe?email="+encodeURIComponent(this.newsletterEmail))
+                .then(res => {
+                    this.$emit("subscribeNewsletter", this.newsletterEmail);
+                    this.newsletterEmail = "";
+                })
+                .catch(error => {
+                    console.error(error);
+                    this.$emit("cannotSubscribeNewsletter", this.newsletterEmail);
+                });
             }
         },
         onKeyupNewsletterInput(event) {
