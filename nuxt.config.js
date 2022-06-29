@@ -5,7 +5,7 @@ export default {
   ssr: false,
 
   // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
+  target: 'server',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -23,7 +23,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }
+      { rel: 'apple-touch-icon', sizes: '180x180', href: 'apple-touch-icon.png' }
     ]
   },
 
