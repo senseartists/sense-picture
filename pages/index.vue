@@ -25,7 +25,7 @@ export default Vue.extend({
     mounted() {
         this.playlists = [];
         for (let i = 0; i < 9; i++) {
-            this.playlists.push(require("../assets/images/playlists/"+i+".jpg"));
+            this.playlists.push(require("~/assets/images/playlists/"+i+".jpg"));
         }
         this.loadDisconnectedPicture();
     },
@@ -35,7 +35,7 @@ export default Vue.extend({
             this.spotify = "129k streams";
             this.appleMusic = "61.6k streams";
             this.deezer = "19.0k streams";
-            this.image = require(`../assets/images/uc.jpg`);
+            this.image = require(`~/assets/images/uc.jpg`);
             this.top3 = ["France", "USA", "Japan"];
             this.shuffle(this.playlists);
             this.playlists.reverse();
