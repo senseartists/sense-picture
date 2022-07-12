@@ -6,24 +6,24 @@
                 <Transition mode="out-in" :name="transition">
                     <div class="step" v-if="step==1" :key="1">
                         <h1>submit new music</h1>
-                        <input type="text" v-model="artist" placeholder="Artist" />
-                        <input type="text" v-model="title" placeholder="Title" />
+                        <input type="text" v-model="music.artist" placeholder="Artist" />
+                        <input type="text" v-model="music.title" placeholder="Title" />
                         <button type="button" class="button" @click="next">next</button>
                     </div>
                     <div class="step" v-if="step==2" :key="2">
                         <img class="back-button" src="~/assets/images/svg/arrow.svg" alt="back" @click="previous" />
                         <h1>submit new music</h1>
-                        <input type="text" v-model="upc" placeholder="UPC (we provide if needed)" />
-                        <input type="text" v-model="label" placeholder="Label" />
-                        <input type="text" v-model="catalogNumber" placeholder="Catalog Number" />
-                        <input type="date" v-model="releaseDate" placeholder="Release Date" />
+                        <input type="text" v-model="music.upc" placeholder="UPC (we provide if needed)" />
+                        <input type="text" v-model="music.label" placeholder="Label" />
+                        <input type="text" v-model="music.catalogNumber" placeholder="Catalog Number" />
+                        <input type="date" v-model="music.releaseDate" placeholder="Release Date" />
                         <button type="button" class="button" @click="next">next</button>
                     </div>
                     <div class="step" v-if="step==3" :key="3">
                         <img class="back-button" src="~/assets/images/svg/arrow.svg" alt="back" @click="previous" />
                         <h1>tracks</h1>
                         <div class="tracks">
-                            <div class="track" v-for="track,index in tracks">
+                            <div class="track" v-for="track,index in music.tracks">
                                 <span>{{index+1}}.</span>
                                 <input type="text" v-model="track.name" placeholder="Track Name" />
                                 <button type="button" class="more-button" @click="openTrackModal(track)" title="More">⋮</button>
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import Vue from 'vue'
 export default Vue.extend({
     props: {
@@ -57,22 +58,24 @@ export default Vue.extend({
         return {
             step: 1,
             transition: "slide",
-            artist: "",
-            title: "",
-            upc: "",
-            label: "",
-            catalogNumber: "",
-            releaseDate: "",
-            tracks: [{name: ""},{name: ""}],
+            music: {
+                artist: "",
+                title: "",
+                upc: "",
+                label: "",
+                catalogNumber: "",
+                releaseDate: "",
+                tracks: [{name: ""},{name: ""}]
+            },
             showTrackModal: false,
             track: {}
         }
     },
     methods: {
         next() {
-            if ((this.step==1) && (this.artist=="" || this.title=="")
-                || (this.step==2 && (this.label=="" || this.catalogNumber=="" || this.releaseDate==""))
-                || (this.step==3 && this.tracks.reduce((acc,track)=>acc||!track.name,false))) {
+            if ((this.step==1) && (this.music.artist=="" || this.music.title=="")
+                || (this.step==2 && (this.music.label=="" || this.music.catalogNumber=="" || this.music.releaseDate==""))
+                || (this.step==3 && this.music.tracks.reduce((acc,track)=>acc||!track.name,false))) {
                 return;
             }
             this.transition = "slide";
@@ -84,17 +87,26 @@ export default Vue.extend({
                 this.step--;
         },
         submitMusic() {
-            this.$emit("submitMusic", {artist:this.artist, title:this.title});
+            axios.post("api/music", this.music)
+            .then(res => {
+                this.$emit("submitMusic", {title:this.title});
+                this.step = 1;
+                this.music = { artist:"", title:"", upc:"", label:"", catalogNumber:"", releaseDate:"", tracks:[] };
+            })
+            .catch(error => {
+                console.error(error);
+                this.$emit("cannotSubmitMusic", {title:this.title});
+            });
         },
         openTrackModal(track) {
             this.showTrackModal = true;
             this.track = track;
         },
         deleteTrack(index) {
-            this.tracks.splice(index,1);
+            this.music.tracks.splice(index,1);
         },
         addTrack() {
-            this.tracks.push({});
+            this.music.tracks.push({});
         }
     }
 });
