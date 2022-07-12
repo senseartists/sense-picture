@@ -21,9 +21,10 @@
                 <div>
                     <NuxtLink to="#">manifesto</NuxtLink>
                     <NuxtLink to="#">brand guidelines</NuxtLink>
-                    <NuxtLink to="#"><img src="~/assets/images/socials/instagram.svg" alt="instagram" title="instagram" height="30" /></NuxtLink>
-                    <NuxtLink to="#"><img src="~/assets/images/socials/twitter.svg" alt="twitter" title="twitter" height="30" /></NuxtLink>
-                    <NuxtLink to="#"><img src="~/assets/images/socials/discord.svg" alt="discord" title="discord" height="30" /></NuxtLink>
+                    <a href="https://www.instagram.com/senseartists" target="_blank"><img src="~/assets/images/socials/instagram.svg" alt="instagram" title="instagram" height="30" /></a>
+                    <a href="https://twitter.com/senseartists" target="_blank"><img src="~/assets/images/socials/twitter.svg" alt="twitter" title="twitter" height="30" /></a>
+                    <!-- <a href="#"><img src="~/assets/images/socials/discord.svg" alt="discord" title="discord" height="30" /></a> -->
+                    <a href="https://liinks.co/senseartists" target="_blank"><img src="~/assets/images/socials/liinks.svg" alt="liinks" title="liinks" height="30" /></a>
                 </div>
             </div>
             <NuxtLink class="logo" to="/">
