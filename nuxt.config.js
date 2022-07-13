@@ -9,7 +9,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'sense-picture',
+    title: 'picture - SENSE',
     htmlAttrs: {
       lang: 'en'
     },
@@ -18,13 +18,18 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
-      { name: 'msapplication-TileColor', content: '#da532c' },
-      { name: 'theme-color', content: '#ffffff' }
+      { name: 'msapplication-TileColor', content: '#1d1d1d' },
+      { name: 'theme-color', content: '#1d1d1d' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'apple-touch-icon', sizes: '180x180', href: 'apple-touch-icon.png' }
     ]
+  },
+
+  server: {
+    port: process.env.PORT || 3000,
+    host: process.env.HOST || "localhost"
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
