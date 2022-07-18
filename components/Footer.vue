@@ -21,10 +21,12 @@
                 <div>
                     <NuxtLink to="#">manifesto</NuxtLink>
                     <NuxtLink to="#">brand guidelines</NuxtLink>
-                    <a href="https://www.instagram.com/senseartists" target="_blank"><img src="~/assets/images/socials/instagram.svg" alt="instagram" title="instagram" height="30" /></a>
-                    <a href="https://twitter.com/senseartists" target="_blank"><img src="~/assets/images/socials/twitter.svg" alt="twitter" title="twitter" height="30" /></a>
-                    <!-- <a href="#"><img src="~/assets/images/socials/discord.svg" alt="discord" title="discord" height="30" /></a> -->
-                    <a href="https://liinks.co/senseartists" target="_blank"><img src="~/assets/images/socials/liinks.svg" alt="liinks" title="liinks" height="30" /></a>
+                    <span>
+                        <a href="https://www.instagram.com/senseartists" target="_blank"><img src="~/assets/images/socials/instagram.svg" alt="instagram" title="instagram" height="30" /></a>
+                        <a href="https://twitter.com/senseartists" target="_blank"><img src="~/assets/images/socials/twitter.svg" alt="twitter" title="twitter" height="30" /></a>
+                        <!-- <a href="#"><img src="~/assets/images/socials/discord.svg" alt="discord" title="discord" height="30" /></a> -->
+                        <a href="https://liinks.co/senseartists" target="_blank"><img src="~/assets/images/socials/liinks.svg" alt="liinks" title="liinks" height="30" /></a>
+                    </span>
                 </div>
             </div>
             <NuxtLink class="logo" to="/">
@@ -81,6 +83,7 @@ footer {
     padding: 1em 5%;
 }
 footer > div {
+    position: relative;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -120,11 +123,25 @@ footer .newsletter input {
     margin: auto;
 }
 footer .newsletter button {
-    position: relative;
-    right: calc(25% + 1em);
+    position: absolute;
+    right: 25%;
     border: 0;
     background-color: unset;
     font-size: 1.5em;
     padding: 0 1em
+}
+@media (orientatio: portrait) {
+    footer .newsletter {
+        margin-bottom: 1em;
+    }
+    footer .newsletter input {
+        width: 80%;
+    }
+    footer .newsletter button {
+        right: 10%;
+    }
+    footer .links div > a {
+        display: block;
+    }
 }
 </style>

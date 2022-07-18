@@ -27,4 +27,9 @@ export default Vue.extend({
     text-align: center;
     display: block;
 }
+@media (orientation: portrait) {
+    .dsp-cell {
+        min-height: 8em;
+    }
+}
 </style>
