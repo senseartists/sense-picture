@@ -1,6 +1,6 @@
 <template>
     <main>
-        <Header :account="account" @connect="onConnect" @disconnect="loadDisconnectedPicture()" />
+        <Header :account="account" @connect="onConnect" @disconnect="loadDisconnectedPicture()" @cantconnect="onCantConnect" />
         <Picture id="picture" :apple-music="appleMusic" :deezer="deezer" :spotify="spotify" :connected="account!==null&&account!==undefined" :image="image" :top3="top3" :playlists="playlists" />
         <Footer :connected="account!==null&&account!==undefined" @subscribeNewsletter="onSubscribeNewsletter" @cannotSubscribeNewsletter="onCannotSubscribeNewsletter"></Footer>
     </main>
@@ -62,8 +62,12 @@ export default Vue.extend({
             return array;
         },
         onConnect(event) {
-            this.loadConnectedPicture(event);
+            this.loadConnectedPicture(event.address);
             this.$emit("notification", {text:"welcome back ✨",color:"#6d6"});
+        },
+        onCantConnect(event) {
+            var message = event.error=="nometamask" ? "cannot connect to MetaMask 🔑" : event.error;
+            this.$emit("notification", {text:message,color:"#d66"});
         },
         onSubscribeNewsletter(email) {
             this.$emit("notification", {text:"subscribed to the newsletter 📬",color:"#6d6"});

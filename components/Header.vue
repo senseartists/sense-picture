@@ -79,8 +79,12 @@ export default Vue.extend({
     },
     methods: {
         connect() {
+            if (typeof ethereum === "undefined") {
+                this.$emit("cantconnect", {error:"nometamask"});
+                return;
+            }
             ethereum.request({method: "eth_requestAccounts"}).then((accounts) => {
-                this.$emit("connect", ethereum.selectedAddress);
+                this.$emit("connect", {address:ethereum.selectedAddress});
             });
         },
         disconnect() {

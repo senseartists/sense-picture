@@ -31,7 +31,7 @@ export default Vue.extend({
 <style>
 html, input, textarea, button, select {
     font-size: 100%;
-	line-height: 1.25;
+    line-height: 1.25;
     font-family: 'Antoine', 'Apfel Grotezk', 'apfel_reg', -apple-system, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -42,6 +42,7 @@ html, input, textarea, button, select {
 html, body {
     background: #1d1d1d;
     margin: 0;
+    overflow: hidden;
 }
 * {
     box-sizing: border-box;
