@@ -1,8 +1,26 @@
-# picture for Sense
+# picture by/for SENSE
 
-Un dashboard pour afficher les informations statiques d'une musique, et pour permettre aux artistes chez Sense de publier de nouvelles musiques. 
+## What is it?
+
+A dashboard to display statistics and data analysis for our artists (individial music and global), and to allow artists to publish new music simplier.
+Authentification based on the possession of a specific NFT.
+
+## Screenshot
+
+![Screenshot](screenshot.png)
+
+## Features
+
+- connection with MetaMask
+- display of data graph from coinmarketcap.com
+- subsciption to the Mailchimp newsletter
+- ~~music stats from Deezer, Spotify, Apple music~~ waiting for APIs keys
+- artists can submit new music
+- ~~music NFT selection~~ not yet implemented
 
 ## Build Setup
+
+Create a `.env` file in the root directory of the project, following [`.env.example`](.env.example)
 
 ```bash
 # install dependencies
@@ -69,3 +87,7 @@ More information about the usage of this directory in [the documentation](https:
 This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
 
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+
+## Credits
+
+- [Ambi](https://github.com/ptlc8)
