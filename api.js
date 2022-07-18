@@ -2,6 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const fs = require('fs');
 const FormData = require('form-data');
+const sendmail = require('sendmail');
 
 const app = express();
 app.use(express.json());
@@ -10,7 +11,8 @@ const mailchimp_apiKey = process.env.MAILCHIMP_APIKEY;
 const mailchimp_server = mailchimp_apiKey ? mailchimp_apiKey.substring(mailchimp_apiKey.indexOf('-')+1) : "";
 const mailchimp_list = "9f4d90403d";
 const cryptocurrency_id = "10090";
-const discordWebhookSubmit = process.env.DISCORD_WEBHOOK_SUBMIT;
+const submit_discord_webhook = process.env.SUBMIT_DISCORD_WEBHOOK;
+const submit_email = process.env.SUBMIT_EMAIL;
 
 app.get("/newsletter/subscribe", (apiReq, apiRes) => {
     if (!apiReq.query.email) {
@@ -101,9 +103,15 @@ app.post("/music", (apiReq, apiRes) => {
         album.push(Object.assign({artist:body.artist,albumTitle:body.title,label:body.label,catalogNumber:body.catalogNumber,releaseDate:body.releaseDate,upc:body.upc}, track));
     }
     var albumCsv = toCSV(album, {artist:"Artist", albumTitle:"Album Title", label:"Label", catalogNumber:"Catalog Number", releaseDate:"Release Date", upc:"UPC", name:"Track Title", displayArtists:"Display Artists", isrc:"ISRC", type:"Track Type", volume:"volume", year:"year", assetYear:"assetYear", assetLine:"assetLine", genre:"Main genre", subgenre:"Main subgenre", alternateGenre:"Alternate genre", alternateSubgenre:"Alternate subgenre", lyrics:"Lyrics", playtime:"Track Duration", previewStart:"previewStart", previewLength:"previewLength", language:"Metadata Language", explicit:"Explicit", audioLanguage:"Audio Language"});
-    var csvFileName = `${body.artist} - ${body.title} - ${Date.now()}.csv`;
-    console.log({name:csvFileName, content:albumCsv});
-    sendToDiscordWebhook(discordWebhookSubmit, "✨ New music submit in picture dashboard", [{name:csvFileName, content:albumCsv}]).then(function(res) {
+    var csvFileName = `${body.artist}-${body.title}-${Date.now()}.csv`;
+    sendmail({
+        from: "picture@senseartists.com",
+        to: submit_email,
+        subject: "New submit from "+body.artist,
+        html: body.title+" from "+body.artist,
+        attachments: [{ filename: csvFileName, content: albumCsv, contentType: 'text/csv' }]
+    });
+    sendToDiscordWebhook(submit_discord_webhook, "✨ New music submit in picture dashboard", [{name:csvFileName, content:albumCsv}]).then(function(res) {
         apiRes.json({success:true});
     }).catch(function(err) {
         console.error(err);
