@@ -30,8 +30,9 @@ export default Vue.extend({
 
 <style>
 html, input, textarea, button, select {
-    font: 100%/1.5 'apfel_reg', -apple-system, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    font-family: "Apfel Grotezk";
+    font-size: 100%;
+	line-height: 1.25;
+    font-family: 'Antoine', 'Apfel Grotezk', 'apfel_reg', -apple-system, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
