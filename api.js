@@ -131,6 +131,28 @@ app.post("/music", (apiReq, apiRes) => {
     });*/
 });
 
+app.get("/sacem", (apiReq, apiRes, apiNext) => {
+    if (!apiReq.query.artist && !apiReq.query.title) {
+        apiRes.status(400);
+        apiRes.json({error:"need artist or title"});
+        return;
+    }
+    var [title, artist] = [apiReq.query.title, apiReq.query.artist];
+    var filters = title&&artist ? "titles,parties" : title ? "titles" : artist ? "parties" : null;
+    var query = title&&artist ? encodeURIComponent(title)+","+encodeURIComponent(artist) : title ? encodeURIComponent(title) : artist ? encodeURIComponent(artist) : null;
+    axios.get(`https://repertoire.sacem.fr/resultats?filters=${filters}&query=${query}`)
+    .then(res => {
+        var data = res.data.match(/data += +({.+});/);
+        apiRes.header("Content-Type",'application/json');
+        apiRes.send(data ? data[1] : '{error:"invalid data"}');
+    })
+    .catch(err => {
+        console.error(err);
+        apiRes.status(500);
+        apiRes.json({error:"error sending data"});
+    });
+});
+
 function toCSV(array, headers=Object.keys(array[0]??{}).reduce((o,k)=>(o[k]=k)&&o,{})) {
     var csv = Object.values(headers).join(",") + "\n";
     for (let row of array)
