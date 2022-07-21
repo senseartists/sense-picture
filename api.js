@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const fs = require('fs');
 const FormData = require('form-data');
-const sendmail = require('sendmail');
+const nodemailer = require('nodemailer');
 
 const app = express();
 app.use(express.json());
@@ -104,13 +104,21 @@ app.post("/music", (apiReq, apiRes) => {
     }
     var albumCsv = toCSV(album, {artist:"Artist", albumTitle:"Album Title", label:"Label", catalogNumber:"Catalog Number", releaseDate:"Release Date", upc:"UPC", name:"Track Title", displayArtists:"Display Artists", isrc:"ISRC", type:"Track Type", volume:"volume", year:"year", assetYear:"assetYear", assetLine:"assetLine", genre:"Main genre", subgenre:"Main subgenre", alternateGenre:"Alternate genre", alternateSubgenre:"Alternate subgenre", lyrics:"Lyrics", playtime:"Track Duration", previewStart:"previewStart", previewLength:"previewLength", language:"Metadata Language", explicit:"Explicit", audioLanguage:"Audio Language"});
     var csvFileName = `${body.artist}-${body.title}-${Date.now()}.csv`;
-    sendmail({
-        from: "picture@senseartists.com",
+    nodemailer.createTransport({
+        host: process.env.MAIL_HOST,
+        port: process.env.MAIL_PORT,
+        secure: process.env.MAIL_SECURE=="true",
+        auth: {
+            user: process.env.MAIL_USER,
+            pass: process.env.MAIL_PASS
+        }
+    }).sendMail({
+        from: "contact@ambi.dev",
         to: submit_email,
         subject: "New submit from "+body.artist,
-        html: body.title+" from "+body.artist,
+        html: `✨ New music submit in picture dashboard<br />Artist: <b>${body.artist}</b><br />Title: <b>${body.title}</b>`,
         attachments: [{ filename: csvFileName, content: albumCsv, contentType: 'text/csv' }]
-    });
+    }, (e,_i) => e&&console.error(e));
     sendToDiscordWebhook(submit_discord_webhook, "✨ New music submit in picture dashboard", [{name:csvFileName, content:albumCsv}]).then(function(res) {
         apiRes.json({success:true});
     }).catch(function(err) {
