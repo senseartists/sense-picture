@@ -2,7 +2,7 @@
     <div class="logo-container">
         <span class="logo-title">"picture"</span>
         <i class="logo-by">by</i>
-        <SenseLogo class="logo-logo" />
+        <img src="~/assets/images/svg/logo.svg" width="466" alt="SENSE" class="logo-logo" />
     </div>
 </template>
 
@@ -23,6 +23,8 @@
     margin: 10px;
 }
 .logo-logo {
-    height: 3em;
+    height: 2em;
+    margin: 1em 0;
+    width: auto;
 }
 </style>

@@ -5,7 +5,7 @@
         </NuxtLink>
         <div class="buttons">
             <button class="button" @click="connect()" v-if="account===null">
-                <span class="underlined">connect<img src="~/assets/images/svg/send_music.svg" alt=""></span>
+                <!--<span class="underlined">-->connect<!--<img src="~/assets/images/svg/send_music.svg" alt=""></span>-->
             </button>
             <button class="button" @click="disconnect()" v-else>
                 {{account.substr(0,6)+"..."+account.substr(-4)}}
@@ -167,7 +167,7 @@ header > .buttons > * {
     position: relative;
     display: flex;
     flex-direction: column;
-    min-width: 16em;
+    min-width: 9em;
     margin-bottom: -0.25em;
 }
 .select:after {
@@ -217,6 +217,9 @@ header > .buttons > * {
 }
 .select .option:hover {
     background-color: #ffffff88;
+}
+.nft-select {
+    min-width: 14em;
 }
 .nft .name {
     display: block;

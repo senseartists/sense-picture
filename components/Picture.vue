@@ -2,7 +2,7 @@
     <div class="picture row">
         <div class="column flex-2">
             <CellDsp class="flex-1 spotify" title="Spotify" :streams="spotify" />
-            <CellCurve class="flex-1" :title="cryptocurrency.symbol+': $'+Math.round(cryptocurrency.value*100)/100" :subtitle="cryptocurrency.name" legend="last week" :points="cryptocurrency.points" />
+            <CellCurve class="flex-1" :title="cryptocurrency.symbol+': $'+Math.round(cryptocurrency.value*100)/100" legend="last week" :points="cryptocurrency.points" />
             <CellImage :image="image" />
         </div>
         <div class="column flex-2">

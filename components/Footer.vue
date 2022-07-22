@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <div class="newsletter">
+        <div class="newsletter" v-if="!connected">
             <input type="email" placeholder="Register to the newsletter" v-model="newsletterEmail" @keyup="onKeyupNewsletterInput" />
             <button @click="submitNewsletter">&gt;</button>
         </div>
@@ -18,20 +18,18 @@
                         <NuxtLink to="#">jobs</NuxtLink>
                     </div>
                 </Transition>
-                <div>
+                <!--<div>
                     <NuxtLink to="#">manifesto</NuxtLink>
                     <NuxtLink to="#">brand guidelines</NuxtLink>
-                    <span>
-                        <a href="https://www.instagram.com/senseartists" target="_blank"><img src="~/assets/images/socials/instagram.svg" alt="instagram" title="instagram" height="30" /></a>
-                        <a href="https://twitter.com/senseartists" target="_blank"><img src="~/assets/images/socials/twitter.svg" alt="twitter" title="twitter" height="30" /></a>
-                        <!-- <a href="#"><img src="~/assets/images/socials/discord.svg" alt="discord" title="discord" height="30" /></a> -->
-                        <a href="https://liinks.co/senseartists" target="_blank"><img src="~/assets/images/socials/liinks.svg" alt="liinks" title="liinks" height="30" /></a>
-                    </span>
-                </div>
+                </div>-->
             </div>
-            <NuxtLink class="logo" to="/">
-                <SenseLogo />
-            </NuxtLink>
+            <div class="socials">
+                <a href="https://www.instagram.com/senseartists" target="_blank"><img src="~/assets/images/socials/instagram.svg" alt="instagram" title="instagram" height="30" /></a>
+                <a href="https://twitter.com/senseartists" target="_blank"><img src="~/assets/images/socials/twitter.svg" alt="twitter" title="twitter" height="30" /></a>
+                <!-- <a href="#"><img src="~/assets/images/socials/discord.svg" alt="discord" title="discord" height="30" /></a> -->
+                <a href="https://liinks.co/senseartists" target="_blank"><img src="~/assets/images/socials/liinks.svg" alt="liinks" title="liinks" height="30" /></a>
+            </div>
+            <SenseLogo />
         </div>
     </footer>
 </template>
@@ -106,11 +104,15 @@ footer .links a {
 footer .links a:hover {
     text-shadow: 0 0 0.2em #fff;
 }
-footer .links img {
-    height: 1em;
-    vertical-align: middle;
+footer .socials {
+    flex: 1;
 }
-footer .links img:hover {
+footer .socials img {
+    height: 1.8em;
+    vertical-align: middle;
+    margin-right: 1em;
+}
+footer .socials img:hover {
     filter: drop-shadow(0px 0px 0.2em #fff);
 }
 footer .newsletter input {
