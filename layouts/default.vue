@@ -63,7 +63,7 @@ button {
     padding: .25em 1em;
     background-color: transparent;
     color: inherit;
-    font-size: 1.25em;
+    font-size: 1.15em;
     transition: color 0.3s ease, background-color 0.3s ease;
     cursor: pointer;
 }

@@ -62,6 +62,9 @@ export default Vue.extend({
                                     day: 'D MMM'
                                 },
                                 tooltipFormat: "D MMM YYYY"
+                            },
+                            ticks: {
+                                display: false
                             }
                         }],
                         yAxes: [{
