@@ -1,45 +1,50 @@
 <template>
-    <div class="picture row">
-        <div class="column flex-2">
-            <CellDsp class="flex-1 spotify" title="Spotify" :streams="spotify" />
-            <CellCurve class="flex-1" :title="cryptocurrency.symbol+': $'+Math.round(cryptocurrency.value*100)/100" legend="last week" :points="cryptocurrency.points" />
-            <CellImage :image="image" />
+    <div class="picture column">
+        <div class="row">
+            <div class="column flex-2">
+                <CellDsp class="flex-1 spotify" title="Spotify" :streams="spotify" />
+                <CellCurve class="flex-1" :title="cryptocurrency.symbol+': $'+Math.round(cryptocurrency.value*100)/100" legend="last week" :points="cryptocurrency.points" />
+                <CellImage :image="image" />
+            </div>
+            <div class="column flex-2">
+                <CellDsp class="flex-2 apple-music" title="Apple" :streams="appleMusic" />
+                <CellDsp class="flex-2 deezer" title="Deezer" :streams="deezer" />
+                <CellTop3 class="flex-3" :top3="top3" />
+            </div>
+            <div class="column flex-2">
+                <CellPlaylists class="flex-2" :playlists="playlists" />
+                <CellTwitter />
+            </div>
+            <div class="column flex-3">
+                <CellSubmit class="flex-1" :connected="connected" />
+            </div>
         </div>
-        <div class="column flex-2">
-            <CellDsp class="flex-2 apple-music" title="Apple" :streams="appleMusic" />
-            <CellDsp class="flex-2 deezer" title="Deezer" :streams="deezer" />
-            <CellTop3 class="flex-3" :top3="top3" />
-        </div>
-        <div class="column flex-2">
-            <CellPlaylists class="flex-2" :playlists="playlists" />
-            <CellTwitter />
-        </div>
-        <div class="column flex-3">
-            <CellSubmit class="flex-1" :connected="connected" />
-        </div>
+        <SacemSearch />
     </div>
 </template>
 
 <script>
 import Vue from 'vue';
 import axios from 'axios';
+import SacemSearch from './cell/SacemSearch.vue';
 
 export default Vue.extend({
-    props: ["appleMusic","deezer","spotify","image","connected","top3","playlists"],
+    props: ["appleMusic", "deezer", "spotify", "image", "connected", "top3", "playlists"],
     data() {
         return {
-            cryptocurrency: {points:[], value:""}
-        }
+            cryptocurrency: { points: [], value: "" }
+        };
     },
     mounted() {
         axios.get("api/cryptocurrency")
-        .then(res => {
+            .then(res => {
             res.data.points.forEach(e => {
-                e.x = new Date(e.x*1000);
+                e.x = new Date(e.x * 1000);
             });
             this.cryptocurrency = res.data;
         });
-    }
+    },
+    components: { SacemSearch }
 });
 </script>
 

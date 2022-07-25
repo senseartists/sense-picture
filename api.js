@@ -140,19 +140,21 @@ app.post("/music", (apiReq, apiRes) => {
 });
 
 app.get("/sacem", (apiReq, apiRes, apiNext) => {
-    if (!apiReq.query.artist && !apiReq.query.title) {
+    var [title, artist, page, elPerPage] = [apiReq.query.title, apiReq.query.artist, parseInt(apiReq.query.page||1), parseInt(apiReq.query.elPerPage||5)];
+    if (!title && !artist) {
         apiRes.status(400);
         apiRes.json({error:"need artist or title"});
         return;
+    } else if ((!title || title.length <= 3) && (!artist || artist.length <= 3)) {
+        apiRes.status(400);
+        apiRes.json({error:"need at least 4 characters for artist or title"});
+        return;
     }
-    var [title, artist] = [apiReq.query.title, apiReq.query.artist];
     var filters = title&&artist ? "titles,parties" : title ? "titles" : artist ? "parties" : null;
     var query = title&&artist ? encodeURIComponent(title)+","+encodeURIComponent(artist) : title ? encodeURIComponent(title) : artist ? encodeURIComponent(artist) : null;
-    axios.get(`https://repertoire.sacem.fr/resultats?filters=${filters}&query=${query}`)
+    axios.post("https://repertoire.sacem.fr/en/more-results", {filters, query, elPerPage, page})
     .then(res => {
-        var data = res.data.match(/data += +({.+});/);
-        apiRes.header("Content-Type",'application/json');
-        apiRes.send(data ? data[1] : '{error:"invalid data"}');
+        apiRes.json(res.data);
     })
     .catch(err => {
         console.error(err);

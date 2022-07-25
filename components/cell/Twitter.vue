@@ -10,6 +10,7 @@
     background-color: #1da1f2;
     color: #fff;
     overflow-y: scroll;
-    max-height: 60vh;
+    max-height: 50vh;
+    max-height: max(50vh, 30vw);
 }
 </style>

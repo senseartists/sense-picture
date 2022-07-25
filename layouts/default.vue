@@ -42,7 +42,7 @@ html, input, textarea, button, select {
 html, body {
     background: #1d1d1d;
     margin: 0;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 * {
     box-sizing: border-box;
@@ -88,6 +88,13 @@ select.button option:hover {
 select.button :last-child {
     border-radius: 1em;
 }
+.black.button {
+    border: solid .1em #000;
+}
+.black.button:hover {
+    background-color: #000;
+    color: #eee;
+}
 input, select {
     appearance: none;
     background-color: transparent;
@@ -103,17 +110,8 @@ input:focus, select:focus {
     border-bottom: .1em solid #fff;
     padding-bottom: .2em;
 }
-select {
-    position: relative;
-}
-select::-ms-expand {
-    display: none;
-}
-select:after {
-    content: "▼";
-    position: absolute;
-    top: 100%;
-    left: 0;
+input.black, select.black {
+    border-bottom: .05em solid #000;
 }
 
 /* scrollbars */

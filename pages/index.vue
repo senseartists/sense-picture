@@ -86,7 +86,7 @@ main {
     height: 100vh;
 }
 #picture {
-    min-height: 0;
+    /*min-height: 0;*/
     flex: 1;
 }
 @media (orientation: portrait) {
