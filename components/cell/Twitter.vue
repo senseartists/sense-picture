@@ -7,10 +7,10 @@
 
 <style>
 .twitter {
-    background-color: #1da1f2;
-    color: #fff;
+    background-color: #292f33;
+    color: #f5f8fa;
     overflow-y: scroll;
-    max-height: 50vh;
-    max-height: max(50vh, 30vw);
+    height: 40vh;
+    text-align: center;
 }
 </style>

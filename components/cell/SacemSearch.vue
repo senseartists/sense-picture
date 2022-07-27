@@ -106,4 +106,9 @@ export default Vue.extend({
 .sacem-search-cell .pagination {
     text-align: center;
 }
+@media (orientation: portrait) {
+    .sacem-search-cell .query {
+        flex-direction: column;
+    }
+}
 </style>

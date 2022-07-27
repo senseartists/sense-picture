@@ -111,6 +111,7 @@ footer .socials img {
     height: 1.8em;
     vertical-align: middle;
     margin-right: 1em;
+    margin-top: .5em;
 }
 footer .socials img:hover {
     filter: drop-shadow(0px 0px 0.2em #fff);
@@ -132,15 +133,15 @@ footer .newsletter button {
     font-size: 1.5em;
     padding: 0 1em
 }
-@media (orientatio: portrait) {
+@media (orientation: portrait) {
     footer .newsletter {
         margin-bottom: 1em;
     }
     footer .newsletter input {
-        width: 80%;
+        width: 90%;
     }
     footer .newsletter button {
-        right: 10%;
+        right: 5%;
     }
     footer .links div > a {
         display: block;
