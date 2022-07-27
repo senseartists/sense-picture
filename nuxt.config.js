@@ -81,7 +81,7 @@ export default {
 
   // Configuration du module sitemap
   sitemap: {
-    hostname: 'https://senseartists.club',
+    hostname: 'https://'+hostname,
     gzip: true,
     routes : ['/']
   },
