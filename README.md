@@ -17,7 +17,7 @@ Authentification based on the possession of a specific NFT.
 - ~~music stats from Deezer, Spotify, Apple music~~ waiting for APIs keys
 - artists can submit new music
 - ~~music NFT selection~~ not yet implemented
-- ~~search music from SACEM~~ only API for now
+- search music from SACEM
 
 ## Build Setup
 
