@@ -23,12 +23,12 @@
                     <NuxtLink to="#">brand guidelines</NuxtLink>
                 </div>-->
             </div>
-            <div class="socials">
+            <!--<div class="socials">
                 <a href="https://www.instagram.com/senseartists" target="_blank"><img src="~/assets/images/socials/instagram.svg" alt="instagram" title="instagram" height="30" /></a>
                 <a href="https://twitter.com/senseartists" target="_blank"><img src="~/assets/images/socials/twitter.svg" alt="twitter" title="twitter" height="30" /></a>
-                <!-- <a href="#"><img src="~/assets/images/socials/discord.svg" alt="discord" title="discord" height="30" /></a> -->
+                <a href="#"><img src="~/assets/images/socials/discord.svg" alt="discord" title="discord" height="30" /></a>
                 <a href="https://liinks.co/senseartists" target="_blank"><img src="~/assets/images/socials/liinks.svg" alt="liinks" title="liinks" height="30" /></a>
-            </div>
+            </div>-->
             <SenseLogo />
         </div>
     </footer>
@@ -77,8 +77,13 @@ footer {
     flex-direction: column;
     align-items: center;
     background: #1d1d1d;
+    background-image: url("~/assets/images/grad.jpg");
+    background-size: 100%;
+    background-position: 0 100%;
+    background-blend-mode: difference;
     color: #fff;
     padding: 1em 5%;
+    position: relative;
 }
 footer > div {
     position: relative;

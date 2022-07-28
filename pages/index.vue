@@ -80,11 +80,6 @@ export default Vue.extend({
 </script>
 
 <style>
-main {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
 #picture {
     /*min-height: 0;*/
     flex: 1;

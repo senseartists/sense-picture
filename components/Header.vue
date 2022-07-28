@@ -125,11 +125,14 @@ header {
     top: 0;
     left: 0;
     z-index: 100;
-    background: #1d1d1d;
+    background-color: #1d1d1d;
+    background-image: url("~/assets/images/grad.jpg");
+    background-size: 100%;
+    background-blend-mode: difference;
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 1em 5%;
+    padding: 1em 2.5%;
     color: #fff;
 }
 header > .logo {
